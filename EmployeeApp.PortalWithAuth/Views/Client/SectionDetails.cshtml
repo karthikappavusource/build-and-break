@@ -1,0 +1,38 @@
+﻿@model EmployeeApp.PortalWithAuth.Models.SectionDetailsViewModel
+<html>
+<head>
+    <style>
+        a {
+            text-decoration: none;
+        }
+
+        li {
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+    <div>
+
+        <p><span style="font-weight:bold">Name: </span> @Model.Name</p>
+        <p><span style="font-weight:bold">Description: </span> @Model.Description</p>
+        <p><span style="font-weight:bold">Topics: </span></p>
+        <ul>
+
+            @{
+                foreach (var item in Model.topics)
+                {
+                    <div class="card m-2" style="width: 18rem;">
+
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Name</h5>
+                            <p class="card-text">@item.Description</p>
+
+                        </div>
+                    </div>
+                }
+            }
+        </ul>
+    </div>
+</body>
+</html>

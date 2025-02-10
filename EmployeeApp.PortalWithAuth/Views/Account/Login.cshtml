@@ -1,0 +1,39 @@
+﻿@model EmployeeApp.PortalWithAuth.Models.LoginViewModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h1>Login</h1>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="LoginClicked">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ReturnUrl" value="@Model.ReturnUrl"/>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label">Enter email</label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            
+            
+            <div class="form-group">
+                <label class="control-label">Enter password</label>
+                <input asp-for="Password" type="password" class="form-control" />
+            </div>
+            <span>New user?<a asp-action="Register" asp-controller="Account">Register here.</a></></span>
+            <div class="form-group">
+                <input type="submit" value="Login" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

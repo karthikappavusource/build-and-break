@@ -1,0 +1,27 @@
+﻿<html>
+    <head>
+        <style>
+        .menulink {
+            border-radius: 5px;
+            margin: 1rem;
+            display:block;
+            padding: 1rem;
+            background-color: cadetblue;
+            font-size: larger;
+            color: black;
+        }
+    </style>
+    </head>
+    <body>
+    <h1>Welcome to admin dashboard</h1>
+    <a asp-action="RegisterAdminView" class="menulink">Register new employee</a>
+    <a asp-action="Index" class="menulink">View all employees</a>
+    <a asp-action="ListAssociates" class="menulink">View all associates</a>
+    <a asp-action="ListClients" class="menulink">View all clients</a>
+    <a asp-action="ListAdmins" class="menulink">View all administrators</a>
+    <a asp-action="addNewGroup" class="menulink">Add new group</a>
+    <a asp-action="AddProgram" class="menulink">Add a program</a>
+    <a asp-action="AllProgramApplications" class="menulink">View all program applications</a>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+﻿@{
+    if (User!=null&&User.Identity!=null&&User.Identity.IsAuthenticated)
+    {
+        var role = User.FindFirst("role").Value;
+        if (role != null && role == "Admin")
+        {
+            Layout = "_LayoutAdmin";
+        }
+        else if (role != null && role == "Associate")
+        {
+            Layout = "_LayoutAssociate";
+        }
+        else if (role != null && role == "Client")
+        {
+            Layout = "_LayoutClient";
+        }
+        else
+        {
+            Layout = "_Layout";
+        }
+    }
+    
+    else
+    {
+        Layout = "_Layout";
+    }
+    
+}

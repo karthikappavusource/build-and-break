@@ -1,0 +1,43 @@
+﻿@model EmployeeApp.PortalWithAuth.Models.CertificateViewModel
+
+@{
+    ViewData["Title"] = "Apply for Leave";
+}
+
+<h1>Add a new certification</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="SaveCertificate" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="CertifiedOn" class="control-label"></label>
+                <input asp-for="CertifiedOn" class="form-control" type="date" />
+                <span asp-validation-for="CertifiedOn" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="QualifiedFor" class="control-label"></label>
+                <input asp-for="QualifiedFor" class="form-control"  />
+                <span asp-validation-for="QualifiedFor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Expiration" class="control-label"></label>
+                <input asp-for="Expiration" class="form-control" type="date" />
+                <span asp-validation-for="Expiration" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Proof</label>
+                <input asp-for="file" class="form-control" type="file" />
+                <span asp-validation-for="file" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+

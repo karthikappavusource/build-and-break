@@ -1,0 +1,12 @@
+﻿@model EmployeeApp.PortalWithAuth.Models.ApplyPageViewModel
+<p class="text-danger">@ViewBag.message</p>
+
+@{
+    if (Model != null)
+    {
+        <form asp-action="ApplyPage">
+            <input type="hidden" value="@Model.ProgramId" asp-for="ProgramId" />
+            <input type="submit" value="Confirm application?" />
+        </form>
+    }
+}

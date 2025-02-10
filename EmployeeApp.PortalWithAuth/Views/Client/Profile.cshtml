@@ -1,0 +1,66 @@
+﻿@model EmployeeApp.PortalWithAuth.Models.EAGViewModel
+
+@{
+    ViewData["Title"] = "Profile";
+}
+<html>
+<head>
+
+</head>
+<body>
+
+    <h1>Complete your profile!</h1>
+    <form asp-action="ProfileSave">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Name" class="control-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        
+        <div class="form-group">
+            <label asp-for="Phone" class="control-label"></label>
+            <input asp-for="Phone" id="phonenumber" class="form-control" type="tel" />
+            <span asp-validation-for="Phone" class="text-danger"></span>
+            <span id="phonewarning" class="text-danger"></span>
+        </div>
+        
+
+        <div class="form-group">
+            <label asp-for="AddressLine1" class="control-label"></label>
+            <input asp-for="AddressLine1" class="form-control" />
+            <span asp-validation-for="AddressLine1" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="AddressLine2" class="control-label"></label>
+            <input asp-for="AddressLine2" class="form-control" />
+            <span asp-validation-for="AddressLine2" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="State" class="control-label"></label>
+            <input asp-for="State" class="form-control" />
+            <span asp-validation-for="State" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Country" class="control-label"></label>
+            <input asp-for="Country" class="form-control" />
+            <span asp-validation-for="Country" class="text-danger"></span>
+        </div>
+        
+        <input type="hidden" value="password" asp-for="Password" />
+        <input type="hidden" value="password" asp-for="ConfirmPassword" />
+
+        <div class="form-group">
+            <input type="submit" value="Submit" class="btn btn-primary" />
+        </div>
+    </form>
+    
+</body>
+</html>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+

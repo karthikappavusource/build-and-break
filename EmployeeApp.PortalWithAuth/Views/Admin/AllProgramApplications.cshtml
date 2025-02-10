@@ -1,0 +1,26 @@
+﻿@model List<EmployeeApp.PortalWithAuth.Models.AppliedProgram>
+<html>
+    <head></head>
+    <body>
+    <table class="table table-success table-striped">
+            <thead>
+                <tr>
+                    <td>Applicant</td>
+                    <td>Program</td>
+                </tr>
+            </thead>
+            <tbody>
+            @{
+                foreach(var item in Model)
+                {
+                    <tr>
+                        <td>@item.applicantName</td>
+                        <td>@item.programName</td>
+                    </tr>
+                }
+            }
+                
+            </tbody>
+        </table>
+    </body>
+</html>

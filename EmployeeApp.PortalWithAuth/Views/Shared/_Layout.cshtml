@@ -1,0 +1,97 @@
+﻿@using System.Security.Claims;
+@{
+    int empId = 0;
+    if (User.Identity.IsAuthenticated)
+    {
+        empId = Int32.Parse(User.FindFirstValue("Id"));
+    }
+
+}
+<html>
+<head>
+    <title>Employee Portal</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+    <style>
+        .fieldName {
+            font-weight: bold;
+        }
+
+        .sidebar {
+            width: 11%;
+        }
+
+        /* New styles for flexbox layout */
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content {
+            flex: 1;
+            display: flex;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar navbar-light d-flex justify-content-between" style="background-color:cadetblue">
+        <div class="px-4">
+            <a class="navbar-brand" asp-area="" asp-controller="Users" asp-action="Landing">Employee Portal</a>
+        </div>
+        @{
+            if (User.Identity.IsAuthenticated && User.Identity.Name != null)
+            {
+                <div class="d-flex me-5 align-items-center">
+                    <p type="button"
+                       id="popover-button"
+                       data-bs-toggle="popover"
+                       title="Profile"
+                       data-bs-content="funccall"
+                       data-bs-placement="left">
+                        Welcome, @User.Identity.Name
+                    </p>
+                    <a class="btn btn-dark ms-2" asp-action="Logout" asp-controller="Account">Logout</a>
+                </div>
+            }
+        }
+    </div>
+    <div class="content">
+        <div class="p-4 pb-5 border-end sidebar">
+            <ul class="navbar-nav d-flex flex-column">
+                <li class="nav-item active">
+                    <a class="nav-link link-dark" asp-controller="Users" asp-action="Landing">Home</a>
+                </li>
+            </ul>
+        </div>
+        <div class="ps-3 pt-3 flex-fill main-content">
+            @RenderBody()
+        </div>
+    </div>
+    <div class="border-top footer text-muted p-3">
+        <div class="container">
+            &copy; 2024 - EmployeeApp.PortalWithAuth - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous">
+    </script>
+    
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

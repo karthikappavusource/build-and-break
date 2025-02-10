@@ -1,0 +1,82 @@
+﻿@model EmployeeApp.PortalWithAuth.Models.ProgramDetailsViewModel
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        a {
+            text-decoration: none;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .card-text {
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .expandable {
+            cursor: pointer;
+            color: blue;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <p><span style="font-weight:bold">Name: </span> @Model.Name</p>
+        <p><span style="font-weight:bold">Description: </span> @Model.Description</p>
+        <p><span style="font-weight:bold">Sections: </span></p>
+        <ul>
+            @{
+                foreach (var item in Model.sections)
+                {
+                    <li>
+                        <div class="card m-2" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title"><a asp-action="SectionDetails" asp-route-id="@item.Id" class="link-dark">@item.Name</a></h5>
+                                <p class="card-text" id="section-description-@item.Id">@item.Description</p>
+                                <span class="expandable" id="section-toggle-@item.Id" onclick="toggleSectionDescription('@item.Id')">Show more</span>
+                            </div>
+                        </div>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+
+    <script>
+        function toggleSectionDescription(id) {
+            var descElement = document.getElementById('section-description-' + id);
+            var toggleElement = document.getElementById('section-toggle-' + id);
+
+            if (descElement.classList.contains('expanded')) {
+                descElement.classList.remove('expanded');
+                descElement.style.display = '-webkit-box';
+                toggleElement.textContent = 'Show more';
+            } else {
+                descElement.classList.add('expanded');
+                descElement.style.display = 'block';
+                toggleElement.textContent = 'Show less';
+            }
+        }
+
+        function applySectionExpandableStyles() {
+            var descriptions = document.querySelectorAll('.card-text');
+            descriptions.forEach(function (descElement) {
+                if (descElement.scrollHeight > descElement.clientHeight) {
+                    var id = descElement.id.split('-')[2]; // 'section-description-{id}'
+                    var toggleElement = document.getElementById('section-toggle-' + id);
+                    toggleElement.style.display = 'inline';
+                }
+            });
+        }
+
+        window.onload = applySectionExpandableStyles;
+    </script>
+</body>
+</html>

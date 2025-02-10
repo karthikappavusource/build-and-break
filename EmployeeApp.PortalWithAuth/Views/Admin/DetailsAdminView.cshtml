@@ -1,0 +1,280 @@
+﻿@model EmployeeApp.PortalWithAuth.Models.UserViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+<html>
+<head>
+    <style>
+        /* td {
+            border: solid 2px black;
+        } */
+    </style>
+</head>
+<body>
+    <h1>@Model.Name 's Profile</h1>
+    @{
+        if (ViewBag.ViewingUserRole != "Client")
+        {
+            <div>
+
+                <dl class="row">
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Name)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Name)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.DateOfJoining)
+                    </dt>
+                    <dd class="col-sm-10">
+
+                        @{
+                            var formattedDate = "";
+                            if (Model.DateOfJoining != null)
+                            {
+                                formattedDate = Model.DateOfJoining.ToString().Substring(0, 10);
+                            }
+                            else
+                            {
+                                formattedDate = "Not assigned";
+                            }
+                        }
+                        <span>@formattedDate</span>
+                    </dd>
+                    <dt class="col-sm-2">
+                        Group
+                    </dt>
+                    <dd class="col-sm-10">
+                        @{
+                            if (Model.GroupName != null)
+                            {
+                                Html.DisplayFor(model => model.GroupName);
+                            }
+                            else
+                            {
+                                <span>NA</span>
+                            }
+                        }
+
+
+                    </dd>
+                    <dt class="col-sm-2">
+                        Address
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.AddressLine1)
+                        @Html.DisplayFor(model => model.AddressLine2)
+                        @Html.DisplayFor(model => model.State)
+                        @Html.DisplayFor(model => model.Country)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Email)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Email)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Phone)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Phone)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.IsActive)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.IsActive)
+                    </dd>
+                    <dt class="col-sm-2">
+                        Leaves Applied
+                    </dt>
+                    <dd class="col-sm-10">
+                        @{
+                            if (Model.leavesApplied.Count > 0)
+                            {
+                                <table class="table table-success table-striped">
+                                    <thead>
+                                    <td>From</td>
+                                    <td>To</td>
+                                    <td>Purpose</td>
+                                    <td>Duration</td>
+                                    <td>Status</td>
+                                    </thead>
+                                    <tbody>
+                                        @{
+                                            foreach (var leave in Model.leavesApplied)
+                                            {
+                                                var duration = (leave.To - leave.From).Days + 1;
+                                                <tr>
+                                                    <td>@leave.From.ToShortDateString()</td>
+                                                    <td>@leave.To.Date.ToShortDateString()</td>
+                                                    <td>@leave.PurposeOfLeave</td>
+                                                    <td>@duration<span>&nbsp; days</span></td>
+                                                    <td><a asp-action="EditLeaveStatus" asp-route-leaveId="@leave.Id">@leave.status.Name</a> </td>
+                                                </tr>
+                                            }
+
+                                        }
+                                    </tbody>
+                                </table>
+                            }
+                            else
+                            {
+                                <span>No records found!</span>
+                            }
+                        }
+
+                    </dd>
+                    <dt class="col-sm-2">
+                        Certifications
+                    </dt>
+                    <dd class="col-sm-10">
+                        @{
+                            if (Model.certifications.Count > 0)
+                            {
+                                <table class="table table-success table-striped">
+                                    <thead>
+                                    <td>CertifiedOn</td>
+                                    <td>QualifiedFor</td>
+                                    <td>Expiration</td>
+                                    <td>Proof</td>
+                                    <td>Status</td>
+                                    </thead>
+                                    <tbody>
+                                        @{
+                                            foreach (var certification in Model.certifications)
+                                            {
+
+                                                <tr>
+                                                    <td>@certification.CertifiedOn.ToShortDateString()</td>
+                                                    <td>@certification.QualifiedFor</td>
+                                                    <td>@certification.Expiration.ToShortDateString()</td>
+                                                    <td>
+                                                        <a href="@Url.Action("DownloadFile", "Admin", new { id = certification.FileId })">
+                                                            Download File
+                                                        </a>
+                                                    </td>
+                                                    <td><a asp-action="EditCertificationStatus" asp-route-certId="@certification.FileId">@certification.status</a> </td>
+                                                </tr>
+                                            }
+
+                                        }
+                                    </tbody>
+                                </table>
+                            }
+                            else
+                            {
+                                <span>No records found!</span>
+                            }
+                        }
+
+                    </dd>
+                    
+
+                </dl>
+            </div>
+        }
+        else
+        {
+            <div>
+
+                <dl class="row">
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Name)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Name)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.DateOfJoining)
+                    </dt>
+                    <dd class="col-sm-10">
+
+                        @{
+                            var formattedDate = "";
+                            if (Model.DateOfJoining != null)
+                            {
+                                formattedDate = Model.DateOfJoining.ToString().Substring(0, 10);
+                            }
+                            else
+                            {
+                                formattedDate = "Not assigned";
+                            }
+                        }
+                        <span>@formattedDate</span>
+                    </dd>
+                    <dt class="col-sm-2">
+                        Group
+                    </dt>
+                    <dd class="col-sm-10">
+                        @{
+                            if (Model.GroupName != null)
+                            {
+                                Html.DisplayFor(model => model.GroupName);
+                            }
+                            else
+                            {
+                                <span>NA</span>
+                            }
+                        }
+
+
+                    </dd>
+                    <dt class="col-sm-2">
+                        Address
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.AddressLine1)
+                        @Html.DisplayFor(model => model.AddressLine2)
+                        @Html.DisplayFor(model => model.State)
+                        @Html.DisplayFor(model => model.Country)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Email)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Email)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Phone)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Phone)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.IsActive)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.IsActive)
+                    </dd>
+                    
+                    <dt class="col-sm-2">
+                        Programs applied
+                    </dt>
+                    <dd class="col-sm-10">
+                        <ul>
+                            @{
+                                foreach (var item in Model.programsApplied)
+                                {
+                                    <li>@item</li>
+                                }
+                            }
+                        </ul>
+
+                    </dd>
+
+                </dl>
+            </div>
+        }
+    }
+    
+    <div>
+        <a asp-action="EditAdminView" asp-route-id="@ViewBag.empEditId">Edit</a> |
+        <a asp-action="Index">Back to list</a>
+    </div>
+</body>
+</html>
+
+

@@ -1,0 +1,44 @@
+﻿@model EmployeeApp.PortalWithAuth.Models.CertificateViewModel
+
+
+<h1>Edit Certificate Status</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditCertificationStatus">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" value="@Model.FileId" asp-for="FileId" />
+            <div class="form-group">
+                <label asp-for="CertifiedOn" style="font-weight:bold"></label>:
+                <span>@Model.CertifiedOn.ToShortDateString()</span>
+            </div>
+            <div class="form-group">
+                <label asp-for="QualifiedFor" style="font-weight:bold"></label>:
+                <span>@Model.QualifiedFor</span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Expiration" style="font-weight:bold"></label>:
+                <span>@Model.Expiration.ToShortDateString()</span>
+            </div>
+          
+            <div class="form-group">
+                <label class="control-label" style="font-weight:bold">Status</label>
+                <select asp-for="status" asp-items="@ViewBag.StatusNames"></select>
+                <span asp-validation-for="status" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

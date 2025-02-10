@@ -1,0 +1,85 @@
+﻿@model EmployeeApp.PortalWithAuth.Models.UserViewModel
+
+@{
+    ViewData["Title"] = "Details Associate";
+}
+<html>
+    <head>
+        <style>
+            /* td{
+                border:solid 2px black;
+            } */
+            /* span{
+                text-align:center;
+            } */
+        </style>
+    </head>
+    <body>
+    <h1>Welcome @Model.Name</h1>
+
+    <div>
+
+        <dl>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.DateOfJoining)
+            </dt>
+            <dd class="col-sm-10">
+
+                @{
+                    var formattedDate = "";
+                    if (Model.DateOfJoining != null)
+                    {
+                        formattedDate = Model.DateOfJoining.ToString().Substring(0, 10);
+                    }
+                    else
+                    {
+                        formattedDate = "Not assigned";
+                    }
+                }
+                <span>@formattedDate</span>
+            </dd>
+            <dt class="col-sm-2">
+                Group
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.GroupName)
+            </dd>
+            <dt class="col-sm-2">
+                Address
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.AddressLine1)
+                @Html.DisplayFor(model => model.AddressLine2)
+                @Html.DisplayFor(model => model.State)
+                @Html.DisplayFor(model => model.Country)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Phone)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Phone)
+            </dd>
+            
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@ViewBag.empEditId" asp-route-addressid="@ViewBag.addressEditId">Edit</a> |
+        <a asp-action="CreateLeave">Apply new leave</a> |
+        <a asp-action="AddCertificate">Add new certificate</a> |
+        <a asp-action="Logout" asp-controller="Account">Log out</a>
+    </div>
+    </body>
+</html>
+

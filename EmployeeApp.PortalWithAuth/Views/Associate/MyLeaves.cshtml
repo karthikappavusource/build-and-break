@@ -1,0 +1,62 @@
+﻿@model IEnumerable<EmployeeApp.Data.Models.Leave>
+<html>
+    <head>
+        <style>
+            .applynewleavebtn{
+            border-radius: 5px;
+            margin: 1rem;
+            
+            padding: 0.25rem;
+            background-color: cadetblue;
+            font-size: larger;
+            color: black;
+            }
+            a{
+                text-decoration:none;
+                text-decoration-color:unset;
+                color:black;
+            }
+        </style>
+    </head>
+    <body>
+    @{
+        <div class="d-flex align-items-center justify-content-between">
+            <h3>My Leaves</h3>
+            <button class="applynewleavebtn"><a asp-action="CreateLeave">Apply new leave</a></button>
+        </div>
+
+        if (Model.Count() > 0)
+        {
+            <table class="table table-success table-striped">
+                <thead>
+                <td>From</td>
+                <td>To</td>
+                <td>Purpose</td>
+                <td>Duration</td>
+                <td>Status</td>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var leave in Model)
+                        {
+                            var duration = (leave.To - leave.From).Days + 1;
+                            <tr>
+                                <td>@leave.From.ToShortDateString()</td>
+                                <td>@leave.To.Date.ToShortDateString()</td>
+                                <td>@leave.PurposeOfLeave</td>
+                                <td>@duration<span>&nbsp; days</span></td>
+                                <td>@leave.status.Name</td>
+                            </tr>
+                        }
+
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <span>No records found!</span>
+        }
+    }
+    </body>
+</html>

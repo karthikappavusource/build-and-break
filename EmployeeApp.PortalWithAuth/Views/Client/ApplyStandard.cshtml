@@ -1,0 +1,80 @@
+﻿@model List<EmployeeApp.PortalWithAuth.Models.StandardViewModel>
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        
+        a {
+            text-decoration: none;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .card-text {
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .expandable {
+            cursor: pointer;
+            color: blue;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        @{
+            foreach (var pgm in Model)
+            {
+                <li>
+                    <div class="card m-2" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title"><a asp-action="ProgramDetails" asp-route-id="@pgm.Id" class="link-dark">@pgm.Name</a></h5>
+                            <p class="card-text" id="description-@pgm.Id">@pgm.Description</p>
+                            <span class="expandable" id="toggle-@pgm.Id" onclick="toggleDescription('@pgm.Id')">Show more</span>
+                            <br />
+                            <a asp-action="ApplyPage" asp-route-id="@pgm.Id" class="btn btn-primary">Apply</a>
+                        </div>
+                    </div>
+                </li>
+            }
+        }
+    </ul>
+
+    <script>
+        function toggleDescription(id) {
+            var descElement = document.getElementById('description-' + id);
+            var toggleElement = document.getElementById('toggle-' + id);
+
+            if (descElement.classList.contains('expanded')) {
+                descElement.classList.remove('expanded');
+                descElement.style.display = '-webkit-box';
+                toggleElement.textContent = 'Show more';
+            } else {
+                descElement.classList.add('expanded');
+                descElement.style.display = 'block';
+                toggleElement.textContent = 'Show less';
+            }
+        }
+
+        function applyExpandableStyles() {
+            var descriptions = document.querySelectorAll('.card-text');
+            descriptions.forEach(function (descElement) {
+                if (descElement.scrollHeight > descElement.clientHeight) {
+                    var id = descElement.id.split('-')[1];
+                    var toggleElement = document.getElementById('toggle-' + id);
+                    toggleElement.style.display = 'inline';
+                }
+            });
+        }
+
+        window.onload = applyExpandableStyles;
+    </script>
+</body>
+</html>
