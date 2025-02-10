@@ -82,12 +82,26 @@ namespace EmployeeApp.PortalWithAuth.Controllers
         {
             return View();
         }
-        
+
+        [HttpGet]
         public async Task<IActionResult> addNewGroup()
         {
-            return View();
+            return View(new Group());
         }
-        
+        [HttpPost]
+        public async Task<IActionResult> addNewGroup([Bind("Name")] Group g)
+        {
+            ViewBag.Message = "Group added successfully";
+            var newGrp= new Group{
+                Name = g.Name,
+                CreatedDate = DateTime.UtcNow,
+                CreatedPersonId = 1,
+                LastModified = DateTime.UtcNow,
+                LastModifiedPersonId = 1
+            };
+            await _grpService.PostGroup(newGrp);
+            return View(new Group());
+        }
         public async Task<IActionResult> Index()
         {
             // Await the async call to get the result
