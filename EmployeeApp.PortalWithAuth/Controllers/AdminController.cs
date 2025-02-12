@@ -363,7 +363,7 @@ namespace EmployeeApp.PortalWithAuth.Controllers
                 EAGViewModel eag)
         {
             int empEditId = (int)TempData["empEditId"];
-            int addEditId = (int)TempData["addEditId"];
+            //int addEditId = (int)TempData["addEditId"];
 
             // Await the task to get ActionResult<User>
             ActionResult<User> actionResult = await _empService.GetUser(empEditId);
@@ -403,8 +403,11 @@ namespace EmployeeApp.PortalWithAuth.Controllers
             _logger.LogInformation("" + eag.GroupName);
             if (eag.GroupName != "Select")
             {
-                emp.GroupId =await ConvertActionResultToIntAsync(await _grpService.GetGroupId(eag.GroupName));
-                    
+                var grpId = await _grpService.GetGroupId(eag.GroupName);
+                //emp.GroupId =await ConvertActionResultToIntAsync(await _grpService.GetGroupId(eag.GroupName));
+                emp.GroupId = grpId.Value;
+                var grp = await _grpService.GetGroup((int)emp.GroupId);
+                emp.Group = grp.Value;
             }
             else
             {

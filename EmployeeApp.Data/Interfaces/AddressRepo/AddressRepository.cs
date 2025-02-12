@@ -48,7 +48,9 @@ namespace EmployeeApp.Data.Interfaces.AddressRepo
         }
         public async Task<Address> GetAddress(int id)
         {
-            var address = await _context.Addresses.FirstOrDefaultAsync(a => a.Id == id);
+            var address = await _context.Addresses
+                                         .AsNoTracking()
+                                         .FirstOrDefaultAsync(a => a.Id == id);
             return address;
         }
     }
