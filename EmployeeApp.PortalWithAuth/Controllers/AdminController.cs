@@ -25,7 +25,7 @@ using EmployeeApp.Services.StatusServiceFolder;
 
 namespace EmployeeApp.PortalWithAuth.Controllers
 {
-    
+    [Authorize(Policy = "CustomPolicy")]
     public class AdminController : Controller
     {
         
@@ -77,7 +77,7 @@ namespace EmployeeApp.PortalWithAuth.Controllers
             _programApplicationService = programApplicationService;
         }
         
-        [Authorize(Policy = "CustomPolicy")]
+        
         public async Task<IActionResult> LandingAdminView()
         {
             return View();

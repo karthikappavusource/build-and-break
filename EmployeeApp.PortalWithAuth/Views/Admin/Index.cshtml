@@ -24,7 +24,7 @@
 
             columns.Add()
             .RenderedAs(model => new HtmlString($@"
-                <a href='EditAdminView/{model.Id}/{model.address.Id}'>Edit</a> |
+                <a href='EditAdminView/{model.Id}'>Edit</a> |
                 <a href='DetailsAdminView/{model.Id}'>Details</a> |
                 <a href='Delete/{model.Id}'>Delete</a>"))
             .Titled("Actions")
