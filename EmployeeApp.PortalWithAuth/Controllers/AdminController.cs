@@ -547,13 +547,14 @@ namespace EmployeeApp.PortalWithAuth.Controllers
             var user = await ConvertActionResultToUserAsync(await _empService.getUserByMail(email));
             ViewBag.userName = user.Name;
             var certificate = await _certService.GetCertificationByIdAsync(certId);
+            var currStatus = await _statusService.GetStatusByIdAsync(certificate.statusId);
             var certificateView = new CertificateViewModel
             {
                 CertifiedOn = certificate.CertifiedOn,
                 Expiration = certificate.Expiration,
                 QualifiedFor = certificate.QualifiedFor,
                 FileId = certificate.Id,
-                status = certificate.status.Name
+                status = currStatus.Name
             };
             var statuses = await _statusService.GetAllStatusesAsync();
             List<string> statusList = new List<string>();
