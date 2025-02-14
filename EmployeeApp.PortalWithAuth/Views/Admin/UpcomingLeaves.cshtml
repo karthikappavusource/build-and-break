@@ -1,6 +1,10 @@
 ﻿@model Tuple<List<EmployeeApp.Data.Models.User>, List<EmployeeApp.PortalWithAuth.Models.UpcomingLeaveModel >>
 @using NonFactors.Mvc.Grid
 @using Microsoft.AspNetCore.Html
+@{
+
+    var returnUrl = "UpcomingLeaves";
+}
 <html>
 <head>
     <link href="~/css/mvc-grid/mvc-grid.css" rel="stylesheet">
@@ -34,7 +38,7 @@
             //columns.Add(model => model.status).Titled("Status").Filterable(true).Sortable(true);
             columns.Add()
             .RenderedAs(model => new HtmlString($@"
-    <a href='EditLeaveStatusfromUpcoming?leaveId={model.leaveId}'>{model.status}</a>"))
+    <a href='EditLeaveStatus?leaveId={model.leaveId}&returnUrl={returnUrl}'>{model.status}</a>"))
             .Titled("Status")
             .Css("text-center");
         })

@@ -508,8 +508,9 @@ namespace EmployeeApp.PortalWithAuth.Controllers
             return RedirectToAction("ListAssociates");
         }
         
-        public async Task<IActionResult> EditLeaveStatus(int leaveId)
+        public async Task<IActionResult> EditLeaveStatus(int leaveId,string returnUrl)
         {
+            TempData["returnUrl"] = returnUrl;
             var email = User.FindFirst(ClaimTypes.Email).Value;
             var user = await ConvertActionResultToUserAsync(await _empService.getUserByMail(email));
             //_context.Users.FirstOrDefault(u => u.Email == email);
@@ -538,8 +539,8 @@ namespace EmployeeApp.PortalWithAuth.Controllers
             var statusId = await _statusService.GetByNameAsync(model.status.Name);
             leave.statusId = statusId.Id;
             await _leaveService.UpdateLeaveAsync(leave);
-            
-            return RedirectToAction(nameof(DetailsAdminView), new {id=leave.UserId});
+            return Redirect("https://localhost:7011/Admin/" + TempData["returnUrl"]);
+            //return RedirectToAction(nameof(DetailsAdminView), new {id=leave.UserId});
         }
         public async Task<IActionResult> EditCertificationStatus(int certId)
         {
@@ -625,8 +626,10 @@ namespace EmployeeApp.PortalWithAuth.Controllers
 
             var upcomingLeaves = await _leaveService.UpcomingLeaves();
             var upcomingLeavesList = new List<UpcomingLeaveModel>();
+            
             foreach (var x in upcomingLeaves)
             {
+                var currStatus = await _statusService.GetStatusByIdAsync(x.statusId);
                 upcomingLeavesList.Add(new UpcomingLeaveModel
                 {
                     leaveId = x.Id,
@@ -634,7 +637,7 @@ namespace EmployeeApp.PortalWithAuth.Controllers
                     From = x.From,
                     To = x.To,
                     PurposeOfLeave = x.PurposeOfLeave,
-                    status = x.status.Name
+                    status = currStatus.Name
                 });
             }
             var model = Tuple.Create(associateUsers, upcomingLeavesList);

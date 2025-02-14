@@ -112,7 +112,7 @@
                                                     <td>@leave.To.Date.ToShortDateString()</td>
                                                     <td>@leave.PurposeOfLeave</td>
                                                     <td>@duration<span>&nbsp; days</span></td>
-                                                    <td><a asp-action="EditLeaveStatus" asp-route-leaveId="@leave.Id">@leave.status.Name</a> </td>
+                                                    <td><a asp-action="EditLeaveStatus" asp-route-returnUrl="DetailsAdminView/@leave.UserId" asp-route-leaveId="@leave.Id">@leave.status.Name</a> </td>
                                                 </tr>
                                             }
 
