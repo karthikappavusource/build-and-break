@@ -26,23 +26,27 @@
 <body>
    
     <h3>Upcoming Leaves</h3>
-    @(
-        Html.Grid(Model.Item2).Build(columns =>
-        {
-
-
-            columns.Add(model => model.Name).Titled("Associate Name").Filterable(true).Sortable(true);
-            columns.Add(model => model.From).Titled("From").Filterable(true).Sortable(true);
-            columns.Add(model => model.To).Titled("To").Filterable(true).Sortable(true);
-            columns.Add(model => model.PurposeOfLeave).Titled("Purpose").Filterable(true).Sortable(true);
-            //columns.Add(model => model.status).Titled("Status").Filterable(true).Sortable(true);
-            columns.Add()
-            .RenderedAs(model => new HtmlString($@"
+    @if (Model.Item2 != null && Model.Item2.Any())
+    {
+        @(
+            Html.Grid(Model.Item2).Build(columns =>
+            {
+                columns.Add(model => model.Name).Titled("Associate Name").Filterable(true).Sortable(true);
+                columns.Add(model => model.From).Titled("From").Filterable(true).Sortable(true);
+                columns.Add(model => model.To).Titled("To").Filterable(true).Sortable(true);
+                columns.Add(model => model.PurposeOfLeave).Titled("Purpose").Filterable(true).Sortable(true);
+                columns.Add()
+                .RenderedAs(model => new HtmlString($@"
     <a href='EditLeaveStatus?leaveId={model.leaveId}&returnUrl={returnUrl}'>{model.status}</a>"))
-            .Titled("Status")
-            .Css("text-center");
-        })
-        )
+                .Titled("Status")
+                .Css("text-center");
+            })
+            )
+    }
+    else
+    {
+        <p>No leaves found.</p>
+    }
     <script src="~/js/mvc-grid/mvc-grid.js"></script>
 
 
