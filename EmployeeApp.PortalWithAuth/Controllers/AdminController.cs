@@ -22,6 +22,7 @@ using EmployeeApp.Services.UserRoleServiceFolder;
 using EmployeeApp.Services.ProgramApplicationServiceFolder;
 using EmployeeApp.Services.UserServiceFolder;
 using EmployeeApp.Services.StatusServiceFolder;
+using DocumentFormat.OpenXml.Spreadsheet;
 
 namespace EmployeeApp.PortalWithAuth.Controllers
 {
@@ -86,10 +87,10 @@ namespace EmployeeApp.PortalWithAuth.Controllers
         [HttpGet]
         public async Task<IActionResult> addNewGroup()
         {
-            return View(new Group());
+            return View(new EmployeeApp.Data.Models.Group());
         }
         [HttpPost]
-        public async Task<IActionResult> addNewGroup([Bind("Name")] Group g)
+        public async Task<IActionResult> addNewGroup([Bind("Name")] EmployeeApp.Data.Models.Group g)
         {
             ViewBag.Message = "Group added successfully";
             var newGrp= new Group{
@@ -511,11 +512,10 @@ namespace EmployeeApp.PortalWithAuth.Controllers
         public async Task<IActionResult> EditLeaveStatus(int leaveId,string returnUrl)
         {
             TempData["returnUrl"] = returnUrl;
-            var email = User.FindFirst(ClaimTypes.Email).Value;
-            var user = await ConvertActionResultToUserAsync(await _empService.getUserByMail(email));
-            //_context.Users.FirstOrDefault(u => u.Email == email);
-            ViewBag.userName = user.Name;
+            
+            
             var leave =await _leaveService.GetLeaveByIdAsync(leaveId);
+            ViewBag.userName = leave.user.Name;
             //_context.Leaves.Include(u=>u.status).FirstOrDefault(x=>x.Id==leaveId);
             var statuses = await _statusService.GetAllStatusesAsync();
             List<string> statusList = new List<string>();

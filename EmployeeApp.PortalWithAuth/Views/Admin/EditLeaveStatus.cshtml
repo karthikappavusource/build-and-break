@@ -10,7 +10,8 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" value="@Model.Id" asp-for="Id"/>
             <input type="hidden" value="@Model.PurposeOfLeave" asp-for="PurposeOfLeave" />
-            
+			<label asp-for="user.Name" style="font-weight:bold"></label>:
+            <span>@ViewBag.userName</span><br />
             <label asp-for="From" style="font-weight:bold"></label>:
             <span>@Model.From.ToShortDateString()</span><br/>
             <label asp-for="To" style="font-weight:bold"></label>:
