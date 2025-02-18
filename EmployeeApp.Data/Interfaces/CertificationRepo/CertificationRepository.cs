@@ -38,7 +38,8 @@ namespace EmployeeApp.Data.Interfaces.CertificationRepo
 
         public async Task<Certification> Get(int id)
         {
-            return await _context.Certifications.FindAsync(id);
+            return await _context.Certifications.Include(x => x.status).FirstOrDefaultAsync(l => l.Id == id);
+            
 
         }
 

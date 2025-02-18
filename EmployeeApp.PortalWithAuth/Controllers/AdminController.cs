@@ -93,7 +93,7 @@ namespace EmployeeApp.PortalWithAuth.Controllers
         public async Task<IActionResult> addNewGroup([Bind("Name")] EmployeeApp.Data.Models.Group g)
         {
             ViewBag.Message = "Group added successfully";
-            var newGrp= new Group{
+            var newGrp= new  EmployeeApp.Data.Models.Group{
                 Name = g.Name,
                 CreatedDate = DateTime.UtcNow,
                 CreatedPersonId = 1,
@@ -101,7 +101,7 @@ namespace EmployeeApp.PortalWithAuth.Controllers
                 LastModifiedPersonId = 1
             };
             await _grpService.PostGroup(newGrp);
-            return View(new Group());
+            return View(new EmployeeApp.Data.Models.Group());
         }
         public async Task<IActionResult> Index()
         {
@@ -462,7 +462,7 @@ namespace EmployeeApp.PortalWithAuth.Controllers
                 });
             }
 
-            var model = Tuple.Create(associateUsers, upcomingLeavesList);
+            var model = System.Tuple.Create(associateUsers, upcomingLeavesList);
             return View(model);
             
         }
@@ -544,10 +544,12 @@ namespace EmployeeApp.PortalWithAuth.Controllers
         }
         public async Task<IActionResult> EditCertificationStatus(int certId)
         {
-            var email = User.FindFirst(ClaimTypes.Email).Value;
-            var user = await ConvertActionResultToUserAsync(await _empService.getUserByMail(email));
-            ViewBag.userName = user.Name;
+            
+            
             var certificate = await _certService.GetCertificationByIdAsync(certId);
+            var userNameTask= await _userService.GetDetails(certificate.UserId);
+            var userName = userNameTask.Name;
+            ViewBag.userName = userName;
             var currStatus = await _statusService.GetStatusByIdAsync(certificate.statusId);
             var certificateView = new CertificateViewModel
             {
@@ -640,7 +642,7 @@ namespace EmployeeApp.PortalWithAuth.Controllers
                     status = currStatus.Name
                 });
             }
-            var model = Tuple.Create(associateUsers, upcomingLeavesList);
+            var model = System.Tuple.Create(associateUsers, upcomingLeavesList);
             return View(model);
         }
 
@@ -651,7 +653,7 @@ namespace EmployeeApp.PortalWithAuth.Controllers
 
             var programs = new List<EmployeeApp.Data.Models.Program>();
             var sections = new List<Section>();
-            var topics = new List<Topic>();
+            var topics = new List<EmployeeApp.Data.Models.Topic>();
 
             // Process Programs Sheet
             var programSheet = workbook.Worksheet("Programs");
@@ -721,7 +723,7 @@ namespace EmployeeApp.PortalWithAuth.Controllers
                 var existingTopic = await _topicService.GetTopicByIdAsync(topicId);
                 if (existingTopic == null)
                 {
-                    var topic = new Topic
+                    var topic = new EmployeeApp.Data.Models.Topic
                     {
                         Id = topicId,
                         Name = topicName,

@@ -40,7 +40,8 @@ namespace EmployeeApp.Data.Interfaces.LeaveRepo
 
         public async Task<Leave> Get(int id)
         {
-            return await _context.Leaves.FirstOrDefaultAsync(l => l.Id == id);
+            return await _context.Leaves.Include(x => x.status).Include(x => x.user).
+                 FirstOrDefaultAsync(l => l.Id == id);
         }
 
         public async Task<IEnumerable<Leave>> GetLeavesByUserId(int userId)

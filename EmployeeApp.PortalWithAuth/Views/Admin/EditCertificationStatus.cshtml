@@ -9,6 +9,8 @@
 
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" value="@Model.FileId" asp-for="FileId" />
+            <label  style="font-weight:bold">Name</label>:
+            <span>@ViewBag.userName</span><br />
             <div class="form-group">
                 <label asp-for="CertifiedOn" style="font-weight:bold"></label>:
                 <span>@Model.CertifiedOn.ToShortDateString()</span>
