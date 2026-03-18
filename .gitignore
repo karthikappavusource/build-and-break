@@ -1,2 +1,5 @@
 *.txt
 *.vs
+bin
+obj
+.vs

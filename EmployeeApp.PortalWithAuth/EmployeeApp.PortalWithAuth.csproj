@@ -27,4 +27,8 @@
     <ProjectReference Include="..\EmployeeApp.Services\EmployeeApp.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\lib\images\right-arrow.png" />
+  </ItemGroup>
+
 </Project>
