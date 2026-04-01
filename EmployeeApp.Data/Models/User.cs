@@ -13,7 +13,7 @@ namespace EmployeeApp.Data.Models
         public string Password { get; set; } = null!;
         public int AddressId { get; set; }
         public int? GroupId { get; set; }
-        public bool IsActive { get; set; }
+        public bool? IsActive { get; set; }
         public DateTime CreatedDate { get; set; }
         public int CreatedPersonId { get; set; }
         public DateTime LastModified { get; set; }

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EmployeeApp.PortalWithAuth")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+44d6b311c5a5e4223e2a5fc38bfa6472af4d8f1b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9faaa7d697e136e5a3e63267dcd664255fff22c4")]
 [assembly: System.Reflection.AssemblyProductAttribute("EmployeeApp.PortalWithAuth")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EmployeeApp.PortalWithAuth")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

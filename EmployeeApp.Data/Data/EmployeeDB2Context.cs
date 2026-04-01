@@ -35,7 +35,7 @@ namespace EmployeeApp.Data.Data
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=EmployeeDB;Encrypt=False;Trust Server Certificate=False;");
+                optionsBuilder.UseSqlServer("Data Source=.;Database=EmployeeDB;Integrated Security=True;Persist Security Info=False;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=True;");
             }
         }
 
@@ -213,6 +213,14 @@ namespace EmployeeApp.Data.Data
                 .WithMany(s => s.Topics)
                 .HasForeignKey(t => t.SectionId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Role>().HasData(
+                new Role { Id = 1, RoleName = "SystemAdmin", CreatedDate = DateTime.Now, CreatedPersonId = 1, LastModified = DateTime.Now, LastModifiedPersonId =  1},
+                new Role { Id = 2, RoleName = "Admin", CreatedDate = DateTime.Now, CreatedPersonId = 1, LastModified = DateTime.Now, LastModifiedPersonId = 1 },
+                new Role { Id = 3, RoleName = "Associate", CreatedDate = DateTime.Now, CreatedPersonId = 1, LastModified = DateTime.Now, LastModifiedPersonId = 1 },
+                new Role { Id = 4, RoleName = "Client", CreatedDate = DateTime.Now, CreatedPersonId = 1, LastModified = DateTime.Now, LastModifiedPersonId = 1 }
+                );
+
             OnModelCreatingPartial(modelBuilder);
         }
 

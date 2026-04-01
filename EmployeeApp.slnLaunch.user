@@ -1,0 +1,19 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "TokenApi\\TokenApi.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "EmployeeApp.ServiceApi\\EmployeeApp.ServiceApi.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "EmployeeApp.PortalWithAuth\\EmployeeApp.PortalWithAuth.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

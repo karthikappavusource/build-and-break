@@ -322,7 +322,7 @@ namespace EmployeeApp.PortalWithAuth.Controllers
                 Country = user.address.Country,
                 Email = user.Email,
                 Phone = user.Phone,
-                IsActive = user.IsActive,
+                IsActive = (bool)user.IsActive,
             };
 
             // Fetch the groups

@@ -306,6 +306,44 @@ namespace EmployeeApp.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Roles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedDate = new DateTime(2026, 4, 2, 1, 16, 45, 321, DateTimeKind.Local).AddTicks(3862),
+                            CreatedPersonId = 1,
+                            LastModified = new DateTime(2026, 4, 2, 1, 16, 45, 321, DateTimeKind.Local).AddTicks(3872),
+                            LastModifiedPersonId = 1,
+                            RoleName = "SystemAdmin"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedDate = new DateTime(2026, 4, 2, 1, 16, 45, 321, DateTimeKind.Local).AddTicks(3873),
+                            CreatedPersonId = 1,
+                            LastModified = new DateTime(2026, 4, 2, 1, 16, 45, 321, DateTimeKind.Local).AddTicks(3873),
+                            LastModifiedPersonId = 1,
+                            RoleName = "Admin"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedDate = new DateTime(2026, 4, 2, 1, 16, 45, 321, DateTimeKind.Local).AddTicks(3874),
+                            CreatedPersonId = 1,
+                            LastModified = new DateTime(2026, 4, 2, 1, 16, 45, 321, DateTimeKind.Local).AddTicks(3874),
+                            LastModifiedPersonId = 1,
+                            RoleName = "Associate"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedDate = new DateTime(2026, 4, 2, 1, 16, 45, 321, DateTimeKind.Local).AddTicks(3875),
+                            CreatedPersonId = 1,
+                            LastModified = new DateTime(2026, 4, 2, 1, 16, 45, 321, DateTimeKind.Local).AddTicks(3875),
+                            LastModifiedPersonId = 1,
+                            RoleName = "Client"
+                        });
                 });
 
             modelBuilder.Entity("EmployeeApp.Data.Models.Section", b =>

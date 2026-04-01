@@ -12305,11 +12305,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\akarthik\\Documents\\EmployeeApp\\EmployeeApp.PortalWithAuth\\EmployeeApp.PortalWithAuth.csproj",
+      "projectUniqueName": "C:\\Users\\akarthik\\source\\repos\\karthikappavusource\\build-and-break\\EmployeeApp.PortalWithAuth\\EmployeeApp.PortalWithAuth.csproj",
       "projectName": "EmployeeApp.PortalWithAuth",
-      "projectPath": "C:\\Users\\akarthik\\Documents\\EmployeeApp\\EmployeeApp.PortalWithAuth\\EmployeeApp.PortalWithAuth.csproj",
+      "projectPath": "C:\\Users\\akarthik\\source\\repos\\karthikappavusource\\build-and-break\\EmployeeApp.PortalWithAuth\\EmployeeApp.PortalWithAuth.csproj",
       "packagesPath": "C:\\Users\\akarthik\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\akarthik\\Documents\\EmployeeApp\\EmployeeApp.PortalWithAuth\\obj\\",
+      "outputPath": "C:\\Users\\akarthik\\source\\repos\\karthikappavusource\\build-and-break\\EmployeeApp.PortalWithAuth\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -12330,11 +12330,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\akarthik\\Documents\\EmployeeApp\\EmployeeApp.ServiceApi\\EmployeeApp.ServiceApi.csproj": {
-              "projectPath": "C:\\Users\\akarthik\\Documents\\EmployeeApp\\EmployeeApp.ServiceApi\\EmployeeApp.ServiceApi.csproj"
+            "C:\\Users\\akarthik\\source\\repos\\karthikappavusource\\build-and-break\\EmployeeApp.ServiceApi\\EmployeeApp.ServiceApi.csproj": {
+              "projectPath": "C:\\Users\\akarthik\\source\\repos\\karthikappavusource\\build-and-break\\EmployeeApp.ServiceApi\\EmployeeApp.ServiceApi.csproj"
             },
-            "C:\\Users\\akarthik\\Documents\\EmployeeApp\\EmployeeApp.Services\\EmployeeApp.Services.csproj": {
-              "projectPath": "C:\\Users\\akarthik\\Documents\\EmployeeApp\\EmployeeApp.Services\\EmployeeApp.Services.csproj"
+            "C:\\Users\\akarthik\\source\\repos\\karthikappavusource\\build-and-break\\EmployeeApp.Services\\EmployeeApp.Services.csproj": {
+              "projectPath": "C:\\Users\\akarthik\\source\\repos\\karthikappavusource\\build-and-break\\EmployeeApp.Services\\EmployeeApp.Services.csproj"
             }
           }
         }
