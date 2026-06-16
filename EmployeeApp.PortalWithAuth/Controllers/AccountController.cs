@@ -11,7 +11,7 @@ using System.Text;
 
 namespace EmployeeApp.PortalWithAuth.Controllers
 {
-    
+    /**This is a controller for Account**/
     public class AccountController : Controller
     {
         private readonly ILogger<AccountController> _logger;
