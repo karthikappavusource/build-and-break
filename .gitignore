@@ -3,3 +3,6 @@
 **/bin/
 **/obj/
 *.vs/
+/EmployeeApp.Data/obj/EmployeeApp.Data.csproj.nuget.dgspec.json
+/EmployeeApp.Data/obj/project.assets.json
+/EmployeeApp.Data/obj/project.nuget.cache
