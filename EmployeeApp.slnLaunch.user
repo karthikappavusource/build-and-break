@@ -4,15 +4,18 @@
     "Projects": [
       {
         "Path": "TokenApi\\TokenApi.csproj",
-        "Action": "Start"
+        "Action": "Start",
+        "DebugTarget": "TokenApi"
       },
       {
         "Path": "EmployeeApp.ServiceApi\\EmployeeApp.ServiceApi.csproj",
-        "Action": "Start"
+        "Action": "Start",
+        "DebugTarget": "EmployeeApp.ServiceApi"
       },
       {
         "Path": "EmployeeApp.PortalWithAuth\\EmployeeApp.PortalWithAuth.csproj",
-        "Action": "Start"
+        "Action": "Start",
+        "DebugTarget": "EmployeeApp.PortalWithAuth"
       }
     ]
   }
